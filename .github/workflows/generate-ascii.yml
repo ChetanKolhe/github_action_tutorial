@@ -8,17 +8,5 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v4
 
-            - name: Install Cowsy
-              run: sudo apt-get install cowsay -y 
-
-            - name: Generate ASCII char dragon
-              run: cowsay -f dragon "AWW .. I Am Dragon" > dragon.txt
-              
-            - name: Check file present 
-              run: grep -i 'dragon' dragon.txt
-
-            - name: Read dragon
-              run: cat dragon.txt
-
-            - name: List the Repository
-              run: ls    
+            - name: Create a Dragon
+              run: ./ascii-script.sh
