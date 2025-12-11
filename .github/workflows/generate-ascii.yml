@@ -33,4 +33,16 @@ jobs:
           - name: check dragon
             run: |
               ls 
-              grep -i 'drgon' dragon.txt
+              grep -i 'dragon' dragon.txt
+
+    deploy_job:
+      needs: ascii_job
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/download-artifact@v4
+            with:
+              name: my-artifact
+
+          - name: display dragon
+            run: cat dragon.txt    
+
