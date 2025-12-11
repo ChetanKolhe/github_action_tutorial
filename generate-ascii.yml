@@ -1,0 +1,24 @@
+name: My first workflow 
+on: push
+
+jobs:
+    ascii_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: Actions/Checkout@main
+
+            - name: Install Cowsy
+              run: sudo apt-get install cowsay -y 
+
+            - name: Generate ASCII char dragon
+              run: cowsay -f dragon "AWW .. I Am Dragon" > dragon.txt
+              
+            - name: Check file present 
+              run: grep -i 'dragon' dragon.txt
+
+            - name: Read dragon
+              run: cat dragon.txt
+
+            - name: List the Repository
+              run: ls    
