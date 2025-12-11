@@ -15,9 +15,21 @@ jobs:
               run: |
                 chmod +x ascii-script.sh
                 ./ascii-script.sh
+            
+            - uses: actions/upload-artifact@v4
+              with:
+                name: my-artifact
+                path: dragon.txt    
+                
     ascii_job:
       needs: build_job
       runs-on: ubuntu-latest
       steps:
+
+          - uses: actions/download-artifact@v4
+            with:
+              name: my-artifact
+              path: dragon.txt
+
           - name: check dragon
             run: grep -i 'drgon' dragon.txt
