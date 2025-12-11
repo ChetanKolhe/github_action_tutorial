@@ -2,7 +2,7 @@ name: Generate ASCII workflow
 on: push
 
 jobs:
-    ascii_job:
+    build_job:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
@@ -15,3 +15,9 @@ jobs:
               run: |
                 chmod +x ascii-script.sh
                 ./ascii-script.sh
+    ascii_job:
+      needs: build_job
+      runs-on: ubuntu-latest
+      steps:
+          - name: check dragon
+            run: grep -i 'drgon' dragon.txt
