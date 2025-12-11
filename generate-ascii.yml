@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
-              uses: Actions/Checkout@main
+              uses: actions/checkout@v4
 
             - name: Install Cowsy
               run: sudo apt-get install cowsay -y 
