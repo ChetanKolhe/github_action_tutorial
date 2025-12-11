@@ -20,7 +20,7 @@ jobs:
               with:
                 name: my-artifact
                 path: dragon.txt    
-                
+
     ascii_job:
       needs: build_job
       runs-on: ubuntu-latest
@@ -29,7 +29,8 @@ jobs:
           - uses: actions/download-artifact@v4
             with:
               name: my-artifact
-              path: dragon.txt
 
           - name: check dragon
-            run: grep -i 'drgon' dragon.txt
+            run: |
+              ls 
+              grep -i 'drgon' dragon.txt
