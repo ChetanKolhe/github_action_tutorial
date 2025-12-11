@@ -15,7 +15,7 @@ jobs:
                 cat README.md
 
             - name: Generate ASCII char dragon
-              run: cowsy -f dragon "AWW .. I Am Dragon" > dragon.txt
+              run: cowsay -f dragon "AWW .. I Am Dragon" > dragon.txt
               
             # - name : View the file 
             #   run : cat README.md
