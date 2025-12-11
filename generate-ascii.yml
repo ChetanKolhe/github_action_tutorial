@@ -1,4 +1,4 @@
-name: My first workflow 
+name: Generate ASCII workflow 
 on: push
 
 jobs:
