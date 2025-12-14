@@ -29,6 +29,9 @@ jobs:
                   
 
     ascii_job:
+      concurrency: 
+        group: production-job
+        cancel-in-progress: true
       needs: build_job
       runs-on: ubuntu-latest
       steps:
@@ -41,6 +44,7 @@ jobs:
             run: |
               ls 
               grep -i 'dragon' dragon.txt
+              sleep 200
 
     deploy_job:
       needs: ascii_job
