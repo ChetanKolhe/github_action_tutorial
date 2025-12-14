@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: os-build-${{ matrix.demo_value }}
+          name: os-build-${{ matrix.os}}-${{ matrix.demo_value }}
           path: dragon.txt
 
   ascii_job:
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: os-build-${{ matrix.demo_value }}
+          name: os-build-${{ matrix.os}}-${{ matrix.demo_value }}
 
       - name: Check Dragon
         run: |
@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: os-build-${{ matrix.demo_value }}
+          name: os-build-${{ matrix.os}}-${{ matrix.demo_value }}
 
       - name: Display Dragon
         run: cat dragon.txt
