@@ -5,7 +5,8 @@ jobs:
     build_job:
         strategy:
           matrix:
-            os: [ubuntu-20.04,ubuntu-18.04]
+            os: [ubuntu-latest]
+            demo_value: [values1, value2]
 
         runs-on: ${{ matrix.os }}
         steps:
@@ -30,6 +31,7 @@ jobs:
                 echo "${{ secrets.GITHUB_TOKEN }}"
                 echo "${{ vars.REPOSITORY_VARIABLE }}"
                 echo "${{ secrets.REPO_SECRET }}"
+                echo "${{ matrix.demo_value }}"
                   
 
     ascii_job:
