@@ -19,7 +19,14 @@ jobs:
             - uses: actions/upload-artifact@v4
               with:
                 name: my-artifact
-                path: dragon.txt    
+                path: dragon.txt
+            
+            - name: Reading secrets
+              run: |
+                echo "${{ secrets.GITHUB_TOKEN }}"
+                echo "${{ vars.REPOSITORY_VARIABLE }}"
+                echo "${{ secrets.REPO_SECRET }}"
+                  
 
     ascii_job:
       needs: build_job
