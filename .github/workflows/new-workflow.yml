@@ -1,0 +1,61 @@
+name: Generate ASCII workflow -2 
+on: workflow_dispatch
+
+jobs:
+  build_job:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04]
+        demo_value: [value1, value2]
+    runs-on: ${{ matrix.os }}
+    outputs:
+      demo_value: ${{ matrix.demo_value }}
+      os: ${{ matrix.os }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: List all files
+        run: ls -lrt
+
+      - name: Create a Dragon
+        run: |
+          chmod +x ascii-script.sh
+          ./ascii-script.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: os-build-${{ matrix.demo_value }}
+          path: dragon.txt
+
+  ascii_job:
+    needs: build_job
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04]
+        demo_value: [value1, value2]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: os-build-${{ matrix.demo_value }}
+
+      - name: Check Dragon
+        run: |
+          ls
+          grep -i 'dragon' dragon.txt
+
+  deploy_job:
+    needs: ascii_job
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04]
+        demo_value: [value1, value2]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: os-build-${{ matrix.demo_value }}
+
+      - name: Display Dragon
+        run: cat dragon.txt
